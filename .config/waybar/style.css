@@ -1,0 +1,92 @@
+@keyframes blink-critical {
+	50% {
+		background-color: rgba(0, 0, 0, 0.8);
+	}
+	to {
+	        background-color: rgba(255, 0, 0, 0.8);
+	}
+}
+
+* {
+	/* `otf-font-awesome` is required to be installed for icons */
+	border: none;
+	border-radius: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	font-family: "Courier";
+	font-size: 13px;
+}
+
+#waybar {
+	background: transparent;
+	background-color: transparent;
+	color: #ffffff;
+	transition-property: background-color;
+	transition-duration: .5s;
+	padding-bottom: 0px;
+}
+
+#cpu, #memory, #temperature, #idle_inhibitor, #mode, #backlight, #workspaces,
+#language, #tray, #clock, #pulseaudio, #keyboard-state, #battery, #window {
+    border: 2px solid transparent;
+    margin: 4px 6px;
+    padding: 4px 6px;
+    min-width: 30px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#battery {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#battery.warning, #battery.critical {
+	background-color: rgba(255, 0, 0, 0.8);
+}
+
+#battery.plugged, #battery.charging {
+        background-color: rgba(0, 255, 0, 0.8);
+}
+
+#battery.critical.discharging {
+	animation-name: blink-critical;
+	animation-duration: 2s;
+}
+
+#cpu.warning {
+	background-color: rgba(255, 0, 0, 0.8);
+}
+
+#memory.warning {
+	background-color: rgba(255, 0, 0, 0.8);
+}
+
+#temperature.critical {
+	background-color: rgba(255, 0, 0, 0.8);
+}
+
+#window {
+    font-weight: bold;
+}
+
+#workspaces button {
+    border-top: 2px solid transparent;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+#workspaces button.focused {
+    border-color: #ab00ff;
+    background-color: #ab00ff;
+}
+
+#workspaces button.urgent {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
