@@ -12,11 +12,12 @@
     "modules-center": [
     ],
     "modules-right": [
-	    "idle_inhibitor",
 	    "cpu",
 	    "memory",
 	    "temperature",
 	    "pulseaudio",
+	    "pulseaudio#microphone",
+            "custom/gammarelay",
 	    "backlight",
 	    "keyboard-state",
 	    "hyprland/language",
@@ -30,15 +31,25 @@
 	    "warp-on-scroll": false,
 	    "on-click": "activate",	
 	    "sort-by-number": true,
+	    "on-scroll-up": "hyprctl dispatch workspace e+1",
+            "on-scroll-down": "hyprctl dispatch workspace e-1",
 	    "format": "{name}"
     },
     "hyprland/language": {
         "format": " {} ",
-        "min-length": 12
+        "min-length": 12,
+	"on-click": "hyprctl switchxkblayout current next"
+    },
+    "custom/gammarelay": {
+        "format": " {}K ",
+        "exec": "wl-gammarelay-rs watch {t}",
+        "on-click": "busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 6500",
+        "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
+        "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
     },
     "hyprland/window": {
 	    "format": "{}",
-	    "max-length": 120
+	    "max-length": 100
     },
     "keyboard-state": {
 	    "numlock": true,
@@ -47,13 +58,6 @@
 	    "format-icons": {
 		    "locked": "✓",
 		    "unlocked": "✗"
-	    }
-    },
-    "idle_inhibitor": {
-	    "format": "{icon} ",
-	    "format-icons": {
-		    "activated": "",
-		    "deactivated": ""
 	    }
     },
     "tray": {
@@ -92,7 +96,9 @@
 
     "backlight": {
 	    "format": " {percent}% {icon} ",
-	    "format-icons": ["", "", "", "", "", "", "", "", ""]
+	    "format-icons": ["", "", "", "", "", "", "", "", ""],
+	    "on-scroll-up": "brightnessctl s 1%+",
+	    "on-scroll-down": "brightnessctl s 1%-"
     },
     "battery": {
 	    "states": {
@@ -106,22 +112,33 @@
 	    "tooltip": true
     },
     "pulseaudio": {
-	    "scroll-step": 1,
-	    "format": "{volume}% {icon} {format_source}",
-	    "format-bluetooth": "{volume}% {icon} {format_source}",
-	    "format-bluetooth-muted": "Muted  {icon} {format_source}",
-	    "format-muted": "Muted  {format_source}",
-	    "format-source": " {volume}% ",
-	    "format-source-muted": "Muted  ",
+	    "format": "{volume}% {icon}",
+	    "format-bluetooth": "{volume}% {icon}",
+	    "format-bluetooth-muted": "Muted  {icon}",
+	    "format-muted": "Muted  ",
 	    "format-icons": {
 		    "headphone": "",
-		    "hands-free": "",
-		    "headset": "",
+		    "headset": "",
+		    "hdmi": "",
 		    "phone": "",
-		    "portable": "",
 		    "car": "",
 		    "default": ["", "", ""]
 	    },
-	    "on-click": "pavucontrol"
+	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	    "on-click-right": "pavucontrol -t 3",
+	    "tooltip": true
+    },
+    "pulseaudio#microphone": {
+	    "format": "{format_source}",
+	    "format-bluetooth": "{format_source}",
+	    "format-bluetooth-muted": "{format_source}",
+	    "format-muted": "{format_source}",
+	    "format-source": "{volume}% ",
+	    "format-source-muted": "Muted  ",
+	    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+",
+	    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-",
+	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+	    "on-click-right": "pavucontrol -t 4",
+	    "tooltip": true
     }
 }

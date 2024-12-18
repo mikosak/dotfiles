@@ -27,8 +27,7 @@
 	padding-bottom: 0px;
 }
 
-#cpu, #memory, #temperature, #idle_inhibitor, #mode, #backlight, #workspaces,
-#language, #tray, #clock, #pulseaudio, #keyboard-state, #battery, #window {
+#cpu, #memory, #temperature, #mode, #backlight, #workspaces, #language, #tray, #clock, #pulseaudio, #keyboard-state, #battery, #window, #custom-gammarelay {
     border: 2px solid transparent;
     margin: 4px 6px;
     padding: 4px 6px;
