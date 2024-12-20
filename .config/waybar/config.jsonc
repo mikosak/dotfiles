@@ -3,6 +3,7 @@
 	"layer": "top", // Waybar at top layer
 	"position": "top", // Waybar position (top|bottom|left|right)
 	"height": 16, // Waybar height
+	"exclusive": true,
 
     // Choose the order of the modules
     "modules-left": [
@@ -23,7 +24,8 @@
 	    "hyprland/language",
 	    "tray",
 	    "battery",
-	    "clock"
+	    "clock",
+	    "custom/power"
     ],
     "hyprland/workspaces": {
 	    "disable-scroll": false,
@@ -33,12 +35,16 @@
 	    "sort-by-number": true,
 	    "on-scroll-up": "hyprctl dispatch workspace e+1",
             "on-scroll-down": "hyprctl dispatch workspace e-1",
-	    "format": "{name}"
+	    "format": " {name} "
     },
     "hyprland/language": {
         "format": " {} ",
         "min-length": 12,
 	"on-click": "hyprctl switchxkblayout current next"
+    },
+    "custom/power": {
+	"format": "",
+        "on-click": "~/.config/rofi/powermenu.sh"	
     },
     "custom/gammarelay": {
         "format": " {}K ",
@@ -48,7 +54,7 @@
         "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
     },
     "hyprland/window": {
-	    "format": "{}",
+	    "format": " {} ",
 	    "max-length": 100
     },
     "keyboard-state": {
@@ -67,6 +73,7 @@
     "clock": {
 	    "format": "{:%e %b %Y %H:%M}",
 	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	    "format-alt": "<span>{:%I:%M %p}</span><span>  </span>",
 	    "tooltip": true
     },
     "cpu": {
@@ -85,13 +92,13 @@
 	    "critical-threshold": 90,
 	    "format": " {temperatureC}°C {icon} ",
 	    "format-icons": [
-		    "", // Icon: temperature-empty
-		    "", // Icon: temperature-quarter
-		    "", // Icon: temperature-half
-		    "", // Icon: temperature-three-quarters
-		    ""  // Icon: temperature-full
+		    "", 
+		    "", 
+		    "", 
+		    "", 
+		    ""  
 	    ],
-	    "tooltip": true
+	    "tooltip": false
     },
 
     "backlight": {
@@ -112,9 +119,9 @@
 	    "tooltip": true
     },
     "pulseaudio": {
-	    "format": "{volume}% {icon}",
-	    "format-bluetooth": "{volume}% {icon}",
-	    "format-bluetooth-muted": "Muted  {icon}",
+	    "format": "{volume}% {icon} ",
+	    "format-bluetooth": "{volume}% {icon} ",
+	    "format-bluetooth-muted": "Muted  {icon} ",
 	    "format-muted": "Muted  ",
 	    "format-icons": {
 		    "headphone": "",
@@ -124,21 +131,25 @@
 		    "car": "",
 		    "default": ["", "", ""]
 	    },
+	    "on-scroll-up": "wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 1%+",
+	    "on-scroll-down": "wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 1%-",
 	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
 	    "on-click-right": "pavucontrol -t 3",
+	    "on-click-middle": "pavucontrol -t 3",
 	    "tooltip": true
     },
     "pulseaudio#microphone": {
-	    "format": "{format_source}",
-	    "format-bluetooth": "{format_source}",
-	    "format-bluetooth-muted": "{format_source}",
-	    "format-muted": "{format_source}",
+	    "format": "{format_source} ",
+	    "format-bluetooth": "{format_source} ",
+	    "format-bluetooth-muted": "{format_source} ",
+	    "format-muted": "{format_source} ",
 	    "format-source": "{volume}% ",
-	    "format-source-muted": "Muted  ",
-	    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+",
-	    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-",
+	    "format-source-muted": "Muted ",
+	    "on-scroll-up": "wpctl set-volume -l 2 @DEFAULT_AUDIO_SOURCE@ 1%+",
+	    "on-scroll-down": "wpctl set-volume -l 2@DEFAULT_AUDIO_SOURCE@ 1%-",
 	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
 	    "on-click-right": "pavucontrol -t 4",
+	    "on-click-middle": "pavucontrol -t 4",
 	    "tooltip": true
     }
 }
