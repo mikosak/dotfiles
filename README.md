@@ -1,2 +1,6 @@
 # dotfiles
-Dotfiles for Hyprland, Waybar, etc.
+To be used with Hyprland.
+
+Has only been tested on a laptop running Arch.
+
+
