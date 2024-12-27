@@ -1,7 +1,7 @@
 @import "~/.config/rofi/theme.rasi"
 
 configuration {
-    modi: "drun,run,filebrowser,window";
+    modi: "drun,calc,combi";
     case-sensitive: false;
     cycle: true;
     normalize-match: true;
