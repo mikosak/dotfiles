@@ -1,5 +1,5 @@
 # dotfiles
-To be used with Hyprland.
+To be used with Hyprland. The theme is dark/purple/vaporwave (wallpapers not included).
 
 Has only been tested on a laptop running Arch.
 
