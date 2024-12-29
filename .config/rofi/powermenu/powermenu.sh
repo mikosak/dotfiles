@@ -58,24 +58,27 @@ run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--shutdown' ]]; then
-			systemctl poweroff
+			poweroff
 		elif [[ $1 == '--lock' ]]; then
 			hyprlock
 		elif [[ $1 == '--reboot' ]]; then
-			systemctl reboot
+			reboot
 		elif [[ $1 == '--suspend' ]]; then
-			mpc -q pause
 			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
+			if [[ "$XDG_SESSION_DESKTOP" == 'openbox' ]]; then
 				openbox --exit
-			elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
+			elif [[ "$XDG_SESSION_DESKTOP" == 'bspwm' ]]; then
 				bspc quit
-			elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
+			elif [[ "$XDG_SESSION_DESKTOP" == 'i3' ]]; then
 				i3-msg exit
-			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
+			elif [[ "$XDG_SESSION_DESKTOP" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+			elif [[ "$XDG_SESSION_DESKTOP" == 'Hyprland' ]]; then
+				hyprctl dispatch exit
+			else
+				pkill -SIGKILL -u $USER
 			fi
 		fi
 	else

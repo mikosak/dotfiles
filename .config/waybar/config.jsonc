@@ -54,7 +54,7 @@
         "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
     },
     "hyprland/window": {
-	    "format": " {} ",
+	    "format": "{}",
 	    "max-length": 100
     },
     "keyboard-state": {
@@ -112,10 +112,11 @@
 		    "warning": 20,
 		    "critical": 10
 	    },
+	    "interval": 10,
 	    "format": "{capacity}% {icon} ",
 	    "format-charging": "{capacity}%  ",
-	    "format-alt": "{time} {icon} ",
 	    "format-icons": ["", "", "", "", ""],
+	    "on-click": "dunstify \"$(~/.config/hypr/hyprlock/batteries.sh)\"",
 	    "tooltip": true
     },
     "pulseaudio": {
@@ -146,7 +147,7 @@
 	    "format-source": "{volume}% ",
 	    "format-source-muted": "Muted ",
 	    "on-scroll-up": "wpctl set-volume -l 2 @DEFAULT_AUDIO_SOURCE@ 1%+",
-	    "on-scroll-down": "wpctl set-volume -l 2@DEFAULT_AUDIO_SOURCE@ 1%-",
+	    "on-scroll-down": "wpctl set-volume -l 2 @DEFAULT_AUDIO_SOURCE@ 1%-",
 	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
 	    "on-click-right": "pavucontrol -t 4",
 	    "on-click-middle": "pavucontrol -t 4",
