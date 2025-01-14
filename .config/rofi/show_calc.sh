@@ -6,5 +6,5 @@ if [[ -z "$1" ]]; then
 else
     kill `pidof rofi` 
     # so rofi doesn't complain "can't launch rofi inside rofi"
-    rofi -show calc -no-bold -automatic-save-to-history -no-show-match -no-sort -kb-accept-entry '' -kb-accept-custom 'Return' -calc-command "echo -n '{result}' | wl-copy && pkill -x rofi"
+    rofi -show calc -automatic-save-to-history -kb-accept-entry '' -kb-accept-custom 'Return' -calc-command "echo -n '{result}' | wl-copy && pkill -x rofi"
 fi

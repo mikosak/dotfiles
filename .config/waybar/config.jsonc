@@ -116,7 +116,7 @@
 	    "format": "{capacity}% {icon} ",
 	    "format-charging": "{capacity}%  ",
 	    "format-icons": ["", "", "", "", ""],
-	    "on-click": "dunstify \"$(~/.config/hypr/hyprlock/batteries.sh)\"",
+	    "on-click": "dunstify \"$(~/.config/hypr/scripts/batteries.sh)\"",
 	    "tooltip": true
     },
     "pulseaudio": {
