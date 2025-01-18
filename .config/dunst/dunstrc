@@ -72,4 +72,4 @@
 
     background = "#000000"
     foreground = "#ff0000"
-    timeout = 0
+    timeout = 7
