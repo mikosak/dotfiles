@@ -70,12 +70,15 @@ fi
 alias ll='ls -alhF'
 alias la='ls -AF'
 alias l='ls -CF'
-alias _='sudo'
+alias _='sudo '
 alias q='exit'
 alias c='clear'
 alias ..='cd ..'
+alias .='ls'
 alias -- -='cd -'
+alias sl='ls'
 alias python='python3'
+alias open='xdg-open'
 
 # handy flags
 alias mkdir='mkdir -p'
