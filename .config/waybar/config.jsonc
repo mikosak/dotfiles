@@ -10,8 +10,8 @@
   "modules-center": [],
   "modules-right": [
     "idle_inhibitor",
-    "cpu",
-    "memory",
+    // "cpu",
+    // "memory",
     "temperature",
     "pulseaudio",
     "pulseaudio#microphone",
@@ -21,10 +21,11 @@
     //  "bluetooth",
     //  "keyboard-state",
     "hyprland/language",
+    //  "custom/network_traffic",
     "tray",
     "battery",
-    "clock"
-    //  "custom/power"
+    "clock",
+    "custom/power"
   ],
   "hyprland/workspaces": {
     "disable-scroll": false,
@@ -180,6 +181,12 @@
     "format-disconnected": "Disconnected ⚠ ",
     "format-alt": "{ifname}: {ipaddr}/{cidr} "
   },
+"custom/network_traffic": {
+     "exec": "~/.config/waybar/scripts/network_traffic.sh",
+     "return-type": "json",
+     "format-ethernet": "{icon} {ifname} ⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}"    // optional
+},
+
   "bluetooth": {
     "format": "󰂯",
     "format-disabled": "󰂲",
