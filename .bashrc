@@ -86,8 +86,8 @@ alias df='df -h'
 alias du='du -h'
 alias free='free -h'
 
-# kitty ssh fix
-[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
+# fix terminal not fully functional when SSHing
+alias ssh="TERM=xterm-256color ssh"
 
 # for seperate alias
 if [ -f ~/.bash_aliases ]; then
