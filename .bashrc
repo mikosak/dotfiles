@@ -73,21 +73,35 @@ alias l='ls -CF'
 alias _='sudo '
 alias q='exit'
 alias c='clear'
-alias ..='cd ..'
-alias .='ls'
 alias -- -='cd -'
 alias sl='ls'
 alias python='python3'
 alias open='xdg-open'
+alias .='ls'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
-# handy flags
+# human readable
 alias mkdir='mkdir -p'
 alias df='df -h'
 alias du='du -h'
 alias free='free -h'
+alias rsync='rsync -h'
 
 # fix terminal not fully functional when SSHing
 alias ssh="TERM=xterm-256color ssh"
+
+# for pacman (if you are using arch)
+command -v pacman >/dev/null 2>&1 && alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
+command -v expac >/dev/null 2>&1 && alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+command -v expac >/dev/null 2>&1 && alias big="expac -H M '%m\t%n' | sort -h | nl"
+
+# use alternatives if installed
+command -v bat >/dev/null 2>&1 && alias cat='bat'
+command -v eza >/dev/null 2>&1 && alias ls='eza --color=always --group-directories-first --icons'
 
 # for seperate alias
 if [ -f ~/.bash_aliases ]; then
@@ -103,9 +117,7 @@ fi
 
 # Update PATH
 export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:/usr/sbin
 command -v go >/dev/null 2>&1 && export PATH=$PATH:$(go env GOPATH)/bin
-[ -f "~/.ghcup/env" ] && . "~/.ghcup/env"
 
 # command not found hook
 command -v pkgfile >/dev/null 2>&1 && source /usr/share/doc/pkgfile/command-not-found.bash
