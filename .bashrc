@@ -117,6 +117,7 @@ fi
 
 # Update PATH
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/bin
 command -v go >/dev/null 2>&1 && export PATH=$PATH:$(go env GOPATH)/bin
 
 # command not found hook
