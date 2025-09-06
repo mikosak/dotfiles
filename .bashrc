@@ -117,11 +117,13 @@ fi
 
 # Update PATH
 export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:/usr/local/bin
 command -v go >/dev/null 2>&1 && export PATH=$PATH:$(go env GOPATH)/bin
 
 # command not found hook
 command -v pkgfile >/dev/null 2>&1 && source /usr/share/doc/pkgfile/command-not-found.bash
+
+# use keychain to start ssh-agent and add key
+command -v keychain >/dev/null 2>&1 && test -f "$HOME/.ssh/github" && eval $(keychain -q --eval github)
 
 # Ignore case on auto-completion
 # Note: bind used instead of sticking these in .inputrc
