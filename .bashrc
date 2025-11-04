@@ -170,6 +170,15 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# quickly remove duplicates recursively (alternatively, use fdupes -rd <DIR>)
+rmdup () {
+    find $@ -type f -exec md5sum {} + | sort | awk 'BEGIN{lasthash = ""} $1 == lasthash {print} {lasthash = $1}' | cut -d' ' -f2- > /tmp/rmdup.tmp
+    while IFS= read -r filepath; do
+        rm -fv -- "$filepath"
+    done < /tmp/rmdup.tmp
+    rm /tmp/rmdup.tmp
+}
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
