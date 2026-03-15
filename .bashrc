@@ -95,7 +95,7 @@ alias rsync='rsync -h'
 alias ssh="TERM=xterm-256color ssh"
 
 # for pacman (if you are using arch)
-command -v pacman >/dev/null 2>&1 && alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
+command -v pacman >/dev/null 2>&1 && alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 command -v expac >/dev/null 2>&1 && alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 command -v expac >/dev/null 2>&1 && alias big="expac -H M '%m\t%n' | sort -h | nl"
 
